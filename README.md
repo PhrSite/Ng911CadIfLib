@@ -21,7 +21,7 @@ The Ng911CadIfLib depends upon the following NuGet packages.
 Applications that use this class library must install the above packages.
 
 # Documentation
-The documentation pages project for this project is called [Ng911CadIfLibDocumentation](https://phrsite.github.io/Ng911LibCadIfDocumentation). The documentation web site includes class documentation and articles that explain usage of the classes in this library.
+The documentation pages project for this project is called [Ng911CadIfLibDocumentation](https://phrsite.github.io/Ng911CadIfLibDocumentation). The documentation web site includes class documentation and articles that explain usage of the classes in this library.
 
 # Installation
 This class library is available on NuGet.
