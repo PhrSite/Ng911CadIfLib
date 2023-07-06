@@ -279,6 +279,8 @@ internal class WebSocketSubscription
                 Shutdown();
             }
         }
+        else
+            m_NumMissedMessages = 0;
     }
 
     private void ProcessRxMessage(string strMsg)

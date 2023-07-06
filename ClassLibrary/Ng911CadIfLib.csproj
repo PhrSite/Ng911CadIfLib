@@ -12,11 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EidoLib">
-      <HintPath>..\..\EidoLib\ClassLibrary\bin\Debug\net7.0\EidoLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Ng911Lib">
-      <HintPath>..\..\Ng911Lib\ClassLibrary\bin\Debug\net7.0\Ng911Lib.dll</HintPath>
-    </Reference>
+    <PackageReference Include="EidoLib" Version="1.0.1" />
+    <PackageReference Include="Ng911Lib" Version="1.0.3" />
   </ItemGroup>  
 </Project>

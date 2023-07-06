@@ -117,6 +117,12 @@ public class Ng911CadIfServer
         if (app != null)
             return;     // Already started
 
+        ClientCertificateMode CertMode;
+        if (AuthCallback == null)
+            CertMode = ClientCertificateMode.AllowCertificate;
+        else
+            CertMode = ClientCertificateMode.RequireCertificate;
+
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
         // See: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-7.0
         builder.WebHost.UseKestrel(options =>
@@ -126,7 +132,7 @@ public class Ng911CadIfServer
                 listenOptions.UseHttps(new HttpsConnectionAdapterOptions
                 {
                     ServerCertificate = m_ServerCert,
-                    ClientCertificateMode = ClientCertificateMode.AllowCertificate,
+                    ClientCertificateMode = CertMode,
                     ClientCertificateValidation = DoMutualAuthentication
                 });
             });
