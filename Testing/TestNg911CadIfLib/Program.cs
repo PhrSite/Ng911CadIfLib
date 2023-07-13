@@ -61,7 +61,7 @@ internal class Program
             {
                 if (strLine == "send")
                 {
-                    m_TestEido.lastUpdateTimestamp += TimeUtils.GetCurrentNenaTimestamp();
+                    m_TestEido.lastUpdateTimestamp = TimeUtils.GetCurrentNenaTimestamp();
                     m_ng911CadIf.SendEido(m_TestEido);
                 }
             }

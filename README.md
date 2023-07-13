@@ -53,7 +53,7 @@ This directory contains the project files and source code files for the Ng911Cad
 Contains the software requirements specification for this project.
 
 ## Testing Directory
-TBD
+The Testing directory contains three applications that can be used to test the Ng911CadIfLib class library.
 
 
 

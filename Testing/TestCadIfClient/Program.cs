@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using Eido;
 using WebSocketSubNot;
 using HttpUtils;
+using Ng911Lib.Utilities;
 
 namespace WebSocketClient;
 
@@ -106,7 +107,10 @@ public class Program
 
         HttpResults Hr = await Ahr.DoRequestAsync(HttpMethodEnum.GET, strEidoUrl, null, null, true);
         if (Hr.StatusCode == HttpStatusCode.OK)
+        {
             Console.WriteLine($"EIDO received, Content-Type = {Hr.ContentType}");
+            Console.WriteLine(Hr.Body);
+        }
         else
             Console.WriteLine($"HTTPS GET request failed. Status Code = {Hr.StatusCode.ToString()}");
     }
@@ -156,6 +160,15 @@ public class Program
                 Ner.eventResponse.statusText = "OK";
                 string strNer = EidoHelper.SerializeToString(Ner);
                 Cws.SendMessage(strNer).Wait();
+
+                if (Ne.Event?.notification != null)
+                {
+                    foreach (EidoType eido in Ne.Event.notification)
+                    {
+                        Console.WriteLine($"EIDO received at: {TimeUtils.GetCurrentNenaTimestamp()}");
+                        Console.WriteLine(EidoHelper.SerializeToString(eido));
+                    }
+                }
             }
         }
     }
