@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleLoggingServer", "SimpleLoggingServer.csproj", "{11FFAEB6-0E7C-4121-B83C-64D6244E3A13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ng911Lib", "..\..\..\Ng911Lib\ClassLibrary\Ng911Lib.csproj", "{8A868E95-6417-4086-843B-9815FC51F876}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11FFAEB6-0E7C-4121-B83C-64D6244E3A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11FFAEB6-0E7C-4121-B83C-64D6244E3A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11FFAEB6-0E7C-4121-B83C-64D6244E3A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11FFAEB6-0E7C-4121-B83C-64D6244E3A13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A868E95-6417-4086-843B-9815FC51F876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A868E95-6417-4086-843B-9815FC51F876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A868E95-6417-4086-843B-9815FC51F876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A868E95-6417-4086-843B-9815FC51F876}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EB0D69E-6688-449E-9AD7-20B1946826EE}
+	EndGlobalSection
+EndGlobal
