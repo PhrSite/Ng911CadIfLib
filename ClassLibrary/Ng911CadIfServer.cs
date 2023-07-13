@@ -22,7 +22,7 @@ namespace Ng911CadIfLib;
 
 /// <summary>
 /// Class that provides a EIDO conveyance interface between the PSAP CHFE and one or more CAD systems.
-/// See NENA-STA-023.1a-2023.
+/// See NENA-STA-024.1a-2023.
 /// </summary>
 public class Ng911CadIfServer
 {
