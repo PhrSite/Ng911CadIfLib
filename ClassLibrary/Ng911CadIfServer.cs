@@ -180,6 +180,11 @@ public class Ng911CadIfServer
 
     /// <summary>
     /// Performs a graceful shutdown by terminating all subscriptions and stopping the Web Socket listener.
+    /// <para>
+    /// WARNING: This method attempts to shut down the WebApplication object synchronously. Under certain conditions
+    /// this can cause this method to block indefinitely. Use the ShutdownAsync() method instead and await its completion
+    /// instead of using this method.
+    /// </para>
     /// </summary>
     public void Shutdown()
     {
@@ -195,6 +200,28 @@ public class Ng911CadIfServer
         m_ConnectionDictionary.Clear();
 
         app.StopAsync().Wait();
+        app = null;
+    }
+
+    /// <summary>
+    /// Performs a graceful shutdown by terminating all subscriptions and stopping the Web Socket listener. Shuts down
+    /// the WebApplication asynchronously.
+    /// </summary>
+    /// <returns>Returns an awaitable Task object.</returns>
+    public async Task ShutdownAsync()
+    {
+        if (app == null)
+            return;
+
+        ICollection<WebSocketSubscription> Connections = m_ConnectionDictionary.Values;
+        foreach (WebSocketSubscription connection in Connections)
+        {
+            connection.Shutdown();  // Terminates the subscription if there is one.
+        }
+
+        m_ConnectionDictionary.Clear();
+
+        await app.StopAsync();
         app = null;
     }
 
