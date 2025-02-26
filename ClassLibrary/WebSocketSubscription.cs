@@ -1,5 +1,10 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////
 //  File:   WebSocketSubscription.cs                                12 Jun 23 PHR
+//
+//  Revised: 17 Feb 25 PHR
+//              -- Fixed: Was not setting the subscriptionId field of the Subscription
+//                 Response message for an existing subscription in
+//                 ProcessSubscribeRequest().
 /////////////////////////////////////////////////////////////////////////////////////
 
 using System.Collections.Concurrent;
@@ -386,11 +391,9 @@ internal class WebSocketSubscription
             m_LastNotifySent = DateTime.Now;
 
             SendSubscriptionRequestedLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds);
-            SendSubscriptionRequestedResponseLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds,
-                200, "OK");
+            SendSubscriptionRequestedResponseLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds, 200, "OK");
             // Notify the application of the new subscription
-            m_Ncif.FireNewSubscription(m_strSubscriptionId, m_strClientIdType, m_strClientId, 
-                m_RemoteEndPoint);
+            m_Ncif.FireNewSubscription(m_strSubscriptionId, m_strClientIdType, m_strClientId, m_RemoteEndPoint);
         }
         else
         {   // Is it an existing subscription?
@@ -401,11 +404,11 @@ internal class WebSocketSubscription
                 if (m_MinRateSeconds != 0)
                     Resp.subscribeResponse.minRate = m_MinRateSeconds;
                 Resp.subscribeResponse.statusCode = (int)SubscribeResponseCodeEnum.OK;
+                Resp.subscribeResponse.subscriptionId = m_strSubscriptionId;    // 17 Feb 25 PHR
                 Resp.subscribeResponse.statusText = "OK";
                 m_SubscriptionStart = DateTime.Now;
                 SendSubscriptionRequestedLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds);
-                SendSubscriptionRequestedResponseLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds,
-                    200, "OK");
+                SendSubscriptionRequestedResponseLogEvent(m_strSubscriptionId, strQueryId, m_ExpiresSeconds, 200, "OK");
             }
             else
             {   // Error: Unknown subscription ID

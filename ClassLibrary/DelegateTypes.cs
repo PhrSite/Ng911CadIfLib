@@ -48,14 +48,13 @@ public delegate EidoType EidoRetrievalCallbackDelegate(string EidoReferenceId, X
 /// <param name="strSubscriptionId">Subscription ID of the new subscription.</param>
 /// <param name="strIdType">Identifies the type of functional element that subscribed to receive EIDO 
 /// notification events. This information is from the idType field of the other name field of the 
-/// SubjectAltName of the client X.509 certificate that was issued by the PSAP Credentialing Agency (PSAP). 
+/// SubjectAltName of the subscriber's X.509 certificate that was issued by the PSAP Credentialing Agency (PCA). 
 /// Will be null if the subscriber did not provide a client certificate.</param>
-/// <param name="strId">ID of the subscriber from the X.509 certificate. Will be null if the subscriber did
+/// <param name="strId">ID of the subscriber from the subscriber's X.509 certificate. Will be null if the subscriber did
 /// not provide a client certificate</param>
 /// <param name="RemIpe">IP endpoint of the subscriber. The IPEndpoint contains the IP address and port number 
 /// of the subscriber.</param>
-public delegate void NewSubscriptionDelegate(string strSubscriptionId, string strIdType, string strId,
-    IPEndPoint RemIpe);
+public delegate void NewSubscriptionDelegate(string strSubscriptionId, string strIdType, string strId, IPEndPoint RemIpe);
 
 /// <summary>
 /// Delegate for the SubscriptionEnded event of the Ng911CadIfServer class.
@@ -100,7 +99,7 @@ public delegate void WssMessageReceivedDelegate(IPEndPoint RemIpe, string JsonSt
 /// <summary>
 /// Delegate for the WssMessageSent event of the Ng911CadIfServer class.
 /// </summary>
-/// <param name="RemIpe">Endpoint of the client</param>
+/// <param name="RemIpe">Endpoint of the client that the message was sent to</param>
 /// <param name="JsonString">JSON message that was received.</param>
 public delegate void WssMessageSentDelegate(IPEndPoint RemIpe, string JsonString);
 
@@ -111,13 +110,35 @@ public delegate void WssMessageSentDelegate(IPEndPoint RemIpe, string JsonString
 /// <param name="RequestPath">Path from the HTTPS GET request</param>
 /// <param name="ClientCertificate">The client’s X.509 certificate. May be null if the client did not provide 
 /// a certificate.</param>
-public delegate void EidoRequestReceivedDelegate(IPEndPoint RemIpe, string RequestPath, X509Certificate2
-    ClientCertificate);
+public delegate void EidoRequestReceivedDelegate(IPEndPoint RemIpe, string RequestPath, X509Certificate2 ClientCertificate);
 
 /// <summary>
 /// Delegate for the EidoResponseSent event of the Ng911CadIfServer class.
 /// </summary>
-/// <param name="RemIpe">Endpoint of the client.</param>
+/// <param name="RemIpe">Endpoint of the client that the EIDO was sent to.</param>
 /// <param name="ResponseCode">HTTP response code that was sent.</param>
 /// <param name="eido">EIDO document that was sent. Will be null if the ResponseCode is not 200.</param>
 public delegate void EidoResponseSentDelegate(IPEndPoint RemIpe, int ResponseCode, EidoType eido);
+
+/// <summary>
+/// Delegate type for the EidoReceived event of the CadIfWebSocketClient class.
+/// </summary>
+/// <param name="eido">EIDO that was received</param>
+/// <param name="strServerUri">URI of the server that the CadIfWebSocketClient is connected to.</param>
+public delegate void EidoReceivedDelegateType(EidoType eido, string strServerUri);
+
+/// <summary>
+/// Delegate type for the CadIfConnectionState event of the CadIfWebSocketClient class.
+/// </summary>
+/// <param name="IsConnected">If true, the a Web Socket connection has been established to the CAD I/F server (EIDO notifier).
+/// If false if the Web Socket connection has been interrupted or the attempt to connect failed.</param>
+/// <param name="strServerUri">URI that identifies the CAD I/F server.</param>
+public delegate void CadIfConnectionStateDelegate(bool IsConnected, string strServerUri);
+
+/// <summary>
+/// Delegate type for the CadIfSubsriptionState event of the CadIfWebSocketClient class.
+/// </summary>
+/// <param name="IsSubscribed">If true, then a subscription to the CAD I/F server has been established. If false
+/// then a subscription could not be established or the server terminated the subscription.</param>
+/// <param name="strServerUri">URI that identifies the CAD I/F server.</param>
+public delegate void CadIfSubscriptionStateDelegate(bool IsSubscribed, string strServerUri);

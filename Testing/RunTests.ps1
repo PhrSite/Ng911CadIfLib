@@ -1,7 +1,7 @@
 ﻿# Powershell script for running all of the test probrams for testing the Ng911CadIfLib class library.
 
 # Change this if the .NET version changes in the projects
-$Frmwk = "net7.0"
+$Frmwk = "net8.0"
 
 $LoggingServerWd = ".\SimpleLoggingServer\bin\Debug\$FrmWk\"
 $LoggingServerApp = "SimpleLoggingServer.exe"

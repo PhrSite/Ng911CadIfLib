@@ -47,6 +47,68 @@ public class Ng911CadIfServer
     #endregion
 
     /// <summary>
+    /// Fired when a new subscription request is accepted.
+    /// </summary>
+    /// <value>This delegate receives information about the subscriber including its remote endpoint and information from
+    /// the subscriber's X.509 certificate.</value>
+    public event NewSubscriptionDelegate NewSubscription;
+
+    /// <summary>
+    /// Fired when a subscription expires, the subscriber unsubscribes or if the Web Socket connection was terminated abnormally.
+    /// </summary>
+    /// <value>This delegate receives information about the subscriber including the reason that the subscription, its remote 
+    /// endpoint and information from the subscriber's X.509 certificate.</value>
+    public event SubscriptionEndedDelegate SubscriptionEnded;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when it accepts a Web Socket connection.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives information about the client including its remote endpoint, the Web Socket sub-protocol and
+    /// the client's X.509 certificate if available.</value>
+    public event WssConnectionAcceptedDelegate WssConnectionAccepted;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when a Web Socket connection has ended.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives the remote endpoint of the client.</value>
+    public event WssConectionEndedDelegate WssConnectionEnded;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when it receives an EIDO conveyance protocol message.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives the remote endpoint of the client that sent the message to the Ng911CadIfServer object
+    /// and a string containing the JSON message.</value>
+    public event WssMessageReceivedDelegate WssMessageReceived;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when it sends an EIDO conveyance protocol message.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives the remote endpoint of the client that the message was sent to and a string containing
+    /// the JSON message.</value>
+    public event WssMessageSentDelegate WssMessageSent;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when it receives an HTTPS GET request for an EIDO.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives the remote endpoint of the client, the request path and the client's X.509 certificate 
+    /// (if provided).</value>
+    public event EidoRequestReceivedDelegate EidoRequestReceived;
+
+    /// <summary>
+    /// The Ng911CadIfServer class fires this event when it sends a response to an HTTPS GET request for 
+    /// an EIDO.
+    /// This event is for testing only. The application is not expected to handle this event.
+    /// </summary>
+    /// <value>This delegate receives the remote endpoint of the client that the EIDO was sent to, the HTTP response code
+    /// that was sent to the client and the EidoType object that was sent to the client. </value>
+    public event EidoResponseSentDelegate EidoResponseSent;
+
+    /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="ServerCert">X.509 certificate to use for the HTTPS/WSS web socket listener. The 
@@ -145,7 +207,7 @@ public class Ng911CadIfServer
 
         app = builder.Build();
 
-        var webSocketOptions = new WebSocketOptions
+        WebSocketOptions webSocketOptions = new WebSocketOptions
         {
             KeepAliveInterval = TimeSpan.FromSeconds(10),
         };
@@ -155,19 +217,7 @@ public class Ng911CadIfServer
         app.StartAsync(CancellationToken.None);
      }
 
-    /// <summary>
-    /// Fired when a new subscription request is accepted.
-    /// </summary>
-    public event NewSubscriptionDelegate NewSubscription;
-
-    /// <summary>
-    /// Fired when a subscription expires, the subscriber unsubscribes or if the Web Socket connection was
-    /// terminated abnormally.
-    /// </summary>
-    public event SubscriptionEndedDelegate SubscriptionEnded;
-
-    internal void FireNewSubscription(string strSubscriptionId, string strIdType, string strId,
-        IPEndPoint RemIpe)
+    internal void FireNewSubscription(string strSubscriptionId, string strIdType, string strId, IPEndPoint RemIpe)
     {
         NewSubscription?.Invoke(strSubscriptionId, strIdType, strId, RemIpe);
     }
@@ -411,58 +461,21 @@ public class Ng911CadIfServer
             return true;
     }
 
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when it accepts a Web Socket connection.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event WssConnectionAcceptedDelegate WssConnectionAccepted;
-
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when a Web Socket connection has ended.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event WssConectionEndedDelegate WssConnectionEnded;
-
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when it receives an EIDO conveyance protocol message.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event WssMessageReceivedDelegate WssMessageReceived;
-
     internal void FireWssMessageReceived(IPEndPoint RemIpe, string JsonString)
     {
         WssMessageReceived?.Invoke(RemIpe, JsonString);
     }
-
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when it sends an EIDO conveyance protocol message.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event WssMessageSentDelegate WssMessageSent;
 
     internal void FireWssMessageSent(IPEndPoint RemIpe, string JsonString)
     {
         WssMessageSent?.Invoke(RemIpe, JsonString);
     }
 
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when it receives an HTTPS GET request for an EIDO.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event EidoRequestReceivedDelegate EidoRequestReceived;
-
     internal void FireEidoRequestReceived(IPEndPoint RemIpe, string RequestPath, X509Certificate2
         ClientCertificate)
     {
         EidoRequestReceived?.Invoke(RemIpe, RequestPath, ClientCertificate);
     }
-
-    /// <summary>
-    /// The Ng911CadIfServer class fires this event when it sends a response to an HTTPS GET request for 
-    /// an EIDO.
-    /// This event is for testing only. The application is not expected to handle this event.
-    /// </summary>
-    public event EidoResponseSentDelegate EidoResponseSent;
 
     internal void FireEidoResponseSent(IPEndPoint RemIpe, int ResponseCode, EidoType eido)
     {

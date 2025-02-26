@@ -12,8 +12,6 @@ namespace SimpleLoggingServer.Controllers
         [HttpGet]
         public VersionsArrayType GetVersions()
         {
-            //Console.WriteLine($"In GetVersions() at {DateTime.Now.ToString()}");
-
             VersionsArrayType Vat = new VersionsArrayType();
             Vat.versions = new List<VersionItemType>();
             VersionItemType Vit = new VersionItemType();
