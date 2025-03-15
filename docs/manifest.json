@@ -1,0 +1,357 @@
+{
+  "source_base_path": "C:/_MyProjects/Ng911CadIfLib/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.CadIfConnectionStateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.CadIfConnectionStateDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.CadIfConnectionStateDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.CadIfConnectionStateDelegate.yml\" sourcestartlinenumber=\"1\">Delegate type for the CadIfConnectionState event of the CadIfWebSocketClient class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.CadIfLoggingSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.CadIfLoggingSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.CadIfLoggingSettings",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.CadIfLoggingSettings.yml\" sourcestartlinenumber=\"1\">Class for specifying the settings for NG9-1-1 event logging for the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.CadIfSubscriptionStateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.CadIfSubscriptionStateDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.CadIfSubscriptionStateDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.CadIfSubscriptionStateDelegate.yml\" sourcestartlinenumber=\"1\">Delegate type for the CadIfSubsriptionState event of the CadIfWebSocketClient class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.CadIfWebSocketClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.CadIfWebSocketClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.CadIfWebSocketClient",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.CadIfWebSocketClient.yml\" sourcestartlinenumber=\"1\">This class implements the client side of the NG9-1-1 Emergency Incident Data Object (EIDO) transport protocol specified in\nthe document entitled &quot;NENA Standard for the Conveyance of Emergency Incident Data Objects (EIDOs) between Next\nGeneration (NG9-1-1) Systems and Applications&quot;, NENA-STA-024.1a-2023.</p>\n<p>\nThe transport protocol between the client and the EIDO server uses WEB sockets. The client subscribes to the server and\nthe server sends notification message containing one or more EIDOs to the client when they become available.\n</p>\n<p>\nWhen the client receives an EIDO from the server, it fires an event containing the EIDO to the application or component\nusing this class.\n</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.EidoReceivedDelegateType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.EidoReceivedDelegateType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.EidoReceivedDelegateType",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.EidoReceivedDelegateType.yml\" sourcestartlinenumber=\"1\">Delegate type for the EidoReceived event of the CadIfWebSocketClient class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.EidoRequestReceivedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.EidoRequestReceivedDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.EidoRequestReceivedDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.EidoRequestReceivedDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the EidoRequestReceived event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.EidoResponseSentDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.EidoResponseSentDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.EidoResponseSentDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.EidoResponseSentDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the EidoResponseSent event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.EidoRetrievalCallbackDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.EidoRetrievalCallbackDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.EidoRetrievalCallbackDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.EidoRetrievalCallbackDelegate.yml\" sourcestartlinenumber=\"1\">Callback delegate that the Ng911CadIfServer class uses to retrieve an EIDO from the PSAP CHFE for\nthe EIDO Retrieval Service.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.MutualAuthenticationDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.MutualAuthenticationDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.MutualAuthenticationDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.MutualAuthenticationDelegate.yml\" sourcestartlinenumber=\"1\">Callback delegate that the application using the Ng911CadIfServer class can use to perform custom\nauthentication and/or extended authorization.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.NewSubscriptionDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.NewSubscriptionDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.NewSubscriptionDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.NewSubscriptionDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the NewSubscription event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.Ng911CadIfServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.Ng911CadIfServer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.Ng911CadIfServer",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.Ng911CadIfServer.yml\" sourcestartlinenumber=\"1\">Class that provides a EIDO conveyance interface between the PSAP CHFE and one or more CAD systems.\nSee NENA-STA-024.1a-2023.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.SubscriptionEndedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.SubscriptionEndedDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.SubscriptionEndedDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.SubscriptionEndedDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the SubscriptionEnded event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.WssConectionEndedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.WssConectionEndedDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.WssConectionEndedDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.WssConectionEndedDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the WssConnectionEnded event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.WssConnectionAcceptedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.WssConnectionAcceptedDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.WssConnectionAcceptedDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.WssConnectionAcceptedDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the WssConnectionAccepted event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.WssMessageReceivedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.WssMessageReceivedDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.WssMessageReceivedDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.WssMessageReceivedDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the WssMessageReceived event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.WssMessageSentDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.WssMessageSentDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib.WssMessageSentDelegate",
+      "Summary": "<p sourcefile=\"api/Ng911CadIfLib.WssMessageSentDelegate.yml\" sourcestartlinenumber=\"1\">Delegate for the WssMessageSent event of the Ng911CadIfServer class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Ng911CadIfLib.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Ng911CadIfLib.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Ng911CadIfLib",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/SpecificationCompliance.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/SpecificationCompliance.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Ng911CadIfBlockDiagram.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/Ng911CadIfBlockDiagram.jpg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>The NG911CadIfLib Class Library </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="The NG911CadIfLib Class Library ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.json">
+      <meta property="docfx:tocrel" content="toc.json">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../articles/intro.html" title="Articles">Articles</a>
+                      </li>
+                      <li>
+                          <a href="../api/index.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+
+                  <ul class="nav level1">
+                    <li class="active">
+                      <a href="intro.html" title="Introduction" class="active">Introduction</a>
+                    </li>
+                    <li class="">
+                      <a href="SpecificationCompliance.html" title="Specification Compliance" class="">Specification Compliance</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="the-ng911cadiflib-class-library">The NG911CadIfLib Class Library</h1>
+
+<p>The Ng911CadIfLib class library is a Microsoft .NET DLL class library that NG9-1-1 PSAP Call Handling Functional Element (CHFE) applications and Computer Aided Dispatch (CAD) systems can use for conveyance of Emergency Incident Data Objects (EIDOs). The following block diagram shows the external interfaces provided by this class library.</p>
+<p><img src="../images/Ng911CadIfBlockDiagram.jpg" alt="Class Library Interfaces"></p>
+<p>This class library provides two components shown in gray in the above figure. The Ng911CadIfServer class may be used by PSAP CHFE systems to implement the server side (or notifier) of the protocol defined in the document entitled <a href="https://cdn.ymaws.com/www.nena.org/resource/resmgr/standards/nena-sta-024.1a-2023_eidocon.pdf">Conveyance of Emergency Incident Data Objects (EIDOs) between Next Generation (NG 9-1-1) Systems and Applications (NENA-STA-024.1a-2023)</a>.</p>
+<p>The <a href="../api/Ng911CadIfLib.Ng911CadIfServer.html">Ng911CadIfServer</a> class performs the following roles.</p>
+<ol>
+<li>Implements the NENA EIDO Conveyance Protocol defined in <a href="https://cdn.ymaws.com/www.nena.org/resource/resmgr/standards/nena-sta-024.1a-2023_eidocon.pdf">NENA-STA-024.1a-2023</a>. This protocol uses Web Sockets as the transport layer.</li>
+<li>Manages EIDO subscriptions from multiple CAD systems or PSAP CHFEs from external agencies that wish to receive EIDOs</li>
+<li>Provides the EIDO Retrieval Service specified in NENA-STA-024-1a-2023. See the <a href="#retrievalservice">EIDO Retrieval Service</a>.</li>
+<li>Notifies the application when a new subscription request is received or a subscription is terminated</li>
+<li>Provides an interface to one ore more NG9-1-1 Event Loggers and logs subscribe/notify and EIDO delivery events. See <a href="#eventlogging">NG9-1-1 Event Logging</a></li>
+</ol>
+<p>The <a href="../api/Ng911CadIfLib.CadIfWebSocketClient.html">CadIfWebSocketClient</a> class may be used by CAD systems or other types of systems that wish to receive EIDOs from PSAPs or EIDO servers. This class implements the client-side (subscriber) of the EIDO conveyance web socket transport protocol and provides an interface to a single EIDO provider such as a PSAP.</p>
+<h2 id="project-preparation">Project Preparation</h2>
+<p>Follow the instructions in this section to add the Ng911CadIfLib class library to a PSAP CHFE project.</p>
+<ol>
+<li>Add the following framework reference to the application's *.csproj file if it is not already included. This step is only necessary if your application is using the Ng911CadIfServer class.</li>
+</ol>
+<pre><code>  &lt;ItemGroup&gt;
+    &lt;FrameworkReference Include=&quot;Microsoft.AspNetCore.App&quot; /&gt;
+  &lt;/ItemGroup&gt;
+</code></pre>
+<ol start="2">
+<li>Add the Ng911CadIfLib NuGet package to the application.</li>
+</ol>
+<h2 id="ng911cadiflib-dependencies">Ng911CadIfLib Dependencies</h2>
+<p>The Ng911CadIfLib NuGet package depends on the following NuGet packages and pulls them into the project.</p>
+<ol>
+<li>Ng911Lib</li>
+<li>EidoLib</li>
+</ol>
+<p>The <a href="https://phrsite.github.io/Ng911LibDocumentation">Ng911Lib</a> NuGet package is a class library that contains classes for all of the JSON and XML schemas used in NG9-1-1 applications, except for the Emergency Incident Data Object (EIDO).</p>
+<p>The <a href="https://phrsite.github.io/EidoLibDocumentation/">EidoLib</a> NuGet package is a class library that contains classes for all of the JSON schemas used for an EIDO. This includes all of the NIEM type definitions.</p>
+<h1 id="using-the-ng911cadifserver-class">Using the Ng911CadIfServer Class</h1>
+<p>An application that uses the Ng911CadIfServer class is responsible for the following.</p>
+<ol>
+<li>Create an EIDO when an NG9-1-1 call is received</li>
+<li>Send the EIDO to all subscribed CAD or remote agencies using an API call to the Ng911CadIfServer class</li>
+<li>Store the EIDOs for all active incidents/calls</li>
+<li>Send all EIDOs for active incidents when a new subscription request is received</li>
+<li>Respond to events exposed by the Ng911CadIfServer class</li>
+<li>Authenticate clients when they connect to the Ng911CadIfServer object. See <a href="#mutualauthentication">Mutual Authentication</a>.</li>
+</ol>
+<p>Perform the following steps to use the Ng911CadIfServer class.</p>
+<ol>
+<li>Create an instance of the Ng911CadIfServer class and pass the configuration parameters in the constructor.</li>
+<li>Hook the desired events of the Ng911CadIfServer class.</li>
+<li>Call the Start() method of the Ng911CadIfServer class.</li>
+</ol>
+<p>When the application shuts down, it should call the Shutdown() method of the Ng911CadIfServer object. This method performs an orderly shutdown by terminating the subscription of any subscribed CAD system elements and performs a normal close for the Web Socket connections.</p>
+<h2 id="ng911cadifserver-events">Ng911CadIfServer Events</h2>
+<p>The Ng911CadIfServer class provides two events that an application can hook.</p>
+<h3 id="the-newsubscription-event">The NewSubscription Event</h3>
+<p>The Ng911CadIfServer class fires this event when it accepts a new subscription. The application must hook this event and respond to it. The delegate type for the handler of this event is <a href="../api/Ng911CadIfLib.NewSubscriptionDelegate.html">NewSubscriptionDelegate</a>.</p>
+<p>The event handler for this event must call the SendEidosToSubscriber() method of the Ng911CadIfServer class with the subscribtion ID provided to the application in the event handler and a list of EIDOs for active incidents. The application does not need to call the SendEidosToSubscriber() method if there are no active incidents.</p>
+<p>The purpose of this event and the SendEidosToSubscriber() method is to meet the requirement specified in NENA-STA-024.1a-2023 that an EIDO notifier (i.e. the PSAP CHFE) send EIDOs for all currently active incidents to a new subscriber.</p>
+<p>The Ng911CadIfServer class manages subscription state so it is not necessary for the application to manage the state of the subscription identified by the NewSubscription event.</p>
+<h3 id="the-subscriptionended-event">The SubscriptionEnded Event</h3>
+<p>The Ng911CadIfServer class fires this event when it detects that a subscription has ended. A subscription will end when one of the following events occur.</p>
+<ol>
+<li>The subscriber ended the subscription by sending an unsubscribe message to the server</li>
+<li>The subscription expired</li>
+<li>The subscriber closed its end of the Web Socket connection to the server</li>
+<li>The subscriber failed to respond to a event notify message from the server three times in succession</li>
+</ol>
+<p>This event is for information purposes only. The application need not perform any action in response to it.</p>
+<h2 id="sending-eidos">Sending EIDOs</h2>
+<p>The PSAP CHFE application can send an EIDO to all subscribers by calling the SendEido() method of the Ng911CadIfServer class. The SendEido() method takes an <a href="https://phrsite.github.io/EidoLibDocumentation/api/Eido.EidoType.html">EidoType</a> object as a parameter. The Ng911CadIfServer object will send the EIDO to each subscriber individually and wait (in a separate thread) for a response from the subscriber. This means that the SendEido() method does not block. If a subscriber is subscribed to a single incident ID, then the SendEido() method will send the EIDO to that subscriber only if the incident ID in the EIDO matches the incident ID that the subscriber subscribed to.</p>
+<p>The PSAP CHFE system should send updated EIDO objects to the Ng911CadIfServer object when the following events occur.</p>
+<ol>
+<li>Updated call location information is received</li>
+<li>Updated additional call related data is received</li>
+<li>The call taker adds information to the call such as call taker notes or the call taker changes the incident type information</li>
+<li>The call taker creates a conference, adds a party to the conference or transfers the call</li>
+<li>The call is terminated</li>
+</ol>
+<p>When a the Ng911CadIfServer accepts a new subscription request, it fires the NewSubscription event. The NewSubscription event handler has a string parameter called strSubscriptionId. In the event hanlder for the NewSubscription event, the PSAP CHFE can send the EIDOs for all active incidents/calls by calling the SendEidosToSubscriber() method of the Ng911CadIfServer class. The SendEidosToSubscriber() method takes the subscription ID and a list of EIDO objects.</p>
+<h2 id="the-eido-retrieval-service"><a name="retrievalservice">The EIDO Retrieval Service</a></h2>
+<p>The EIDO Retrieval Service is an HTTPS/ReSTful interface that an external agency can use to request the EIDO for a specific incident. The need for this interface arises when the PSAP CHFE application transfers a NG9-1-1 call to the external agency.</p>
+<p>To use the EIDO retrieval service of the Ng911CadIfServer, the application configures the HTTPS base request path that the Ng911CadIfServer will listen on in the constructor of the Ng911CadIfServer object. For example: &quot;/incidents/eido&quot;.</p>
+<p>When the PSAP CPE application transfers a call to another agency's PSAP CHFE or invites that agency to a conference, it must construct an HTTPS URI that points to the EIDO retrieval service interface of the Ng911CadIfServer object. The request URI contains the host address of the Ng911CadIfServer object, the base request path plus a reference ID that identifies the EIDO as the last path element. For example: <a href="https://192.168.1.12:10000/incidents/eido/12345">https://192.168.1.12:10000/incidents/eido/12345</a>. In this example, the reference ID is &quot;12345&quot;.</p>
+<p>The URI for the incident's EIDO gets included in the SIP INVITE request that gets sent to the external agency's PSAP CHFE. Section 4.7.4 of <a href="https://cdn.ymaws.com/www.nena.org/resource/resmgr/standards/nena-sta-010.3b-2021_i3_stan.pdf">NENA-STA-010.3b-2021</a> describes how this happens.</p>
+<p>When the external agency's PSAP CHFE performs an HTTPS GET to the EIDO retrieval service interface of the Ng911CadIfServer object, the Ng911CadIfServer extracts the EIDO reference ID from the last path element of the request path and calls the <a href="../api/Ng911CadIfLib.EidoRetrievalCallbackDelegate.html">EidoRetrievalCallbackDelegate</a> that the application provided in its constructor. The application then uses the reference ID parameter to get the EidoType object and return it to the Ng911CadIfServer object. The Ng911CadIfServer object then returns the EIDO in its response to the HTTPS GET request.</p>
+<p>When the external agency's PSAP CHFE receives the EIDO, it extracts the incident ID and it may subscribe to receive updates of the EIDO for that single incident.</p>
+<h2 id="ng9-1-1-event-logging"><a name="eventlogging">NG9-1-1 Event Logging</a></h2>
+<p>The Ng911CadIfServer class can support logging for NG9-1-1 Log Events. The application must perform the following steps to use this capability.</p>
+<ol>
+<li>Create and configure an <a href="https://phrsite.github.io/Ng911LibDocumentation/api/I3V3.LoggingHelpers.I3LogEventClientMgr.html">I3LogEventClientMgr</a> object</li>
+<li>Create an <a href="../api/Ng911CadIfLib.CadIfLoggingSettings.html">CadIfLoggingSettings</a> object</li>
+<li>Pass the I3LogEventClientMgr and the CadIfLoggingSettings objects in the constructor of the Ng911CadIfServer class.</li>
+</ol>
+<p>See <a href="https://phrsite.github.io/Ng911LibDocumentation/articles/Ng911EventLogging.html">NG9-1-1 Event Logging</a>.</p>
+<p>If the application already uses the I3LogEventClientMgr class for logging NG9-1-1 events, then it can use that object in the constructor of the Ng911CadIfServer class.</p>
+<h3 id="events-that-are-logged">Events That Are Logged</h3>
+<p>The Ng911CadIfServer class logs the following events defined in NENA-STA-024.1a-2023.</p>
+<ol>
+<li>EidoLogEvent</li>
+<li>EidoTransmissionErrorLogEvent</li>
+<li>SubscriptionRequestedLogEvent</li>
+<li>SubscriptionRequestedResponseLogEvent</li>
+<li>SubscriptionTerminatedLogEvent</li>
+<li>SubscriptionTerminatedResponseLogEvent</li>
+<li>WebSocketEstablishedLogEvent</li>
+<li>WebSocketTerminatedLogEvent</li>
+</ol>
+<h2 id="mutual-authentication"><a name="mutualauthentication">Mutual Authentication</a></h2>
+<p>The Ng911CadIfServer has the ability to perform Ng9-1-1 mutual authentication of clients.</p>
+<p>One of the parameters of the constructor of the Ng911CadIfServer class is a callback delegate called MutualAuthCallback. The delegate type for this parameter is <a href="../api/Ng911CadIfLib.MutualAuthenticationDelegate.html">MutualAuthenticationDelegate</a>.</p>
+<p>The MutualAuthenticationDelegate type takes the following three parameters and returns a bool value.</p>
+<ol>
+<li>X509Certificate2 certificate</li>
+<li>X509Chain chain</li>
+<li>SslPolicyErrors errors</li>
+</ol>
+<p>If the application provides a MutualAuthenticationDelegate in the constructor of the Ng911CadIfServer class, then the client must provide an X509 certificate in the HTTPS connection request. The Ng911CadIfServer class will call the application provided callback function when a client attempts to connect to either the Web Sockets interface or the EIDO Retrieval Service interface. The application provided callback can return true to accept the HTTPS connection request or false to deny the connection request.</p>
+<p>If the application does not provide a MutualAuthenticationDelegate parameter (i.e., the MutualAuthCallback constructor parameter is null) then the Ng911CadIfServer class will accept all HTTPS connection requests, regardless of whether the client provides a X.509 certificate in the connection request.</p>
+<p>The application can use the information in the certificate, chain and errors parameters of its MutualAuthenticatationDelegate function to determine whether to accept or to reject the client's connection request.</p>
+<p>To perform strict client certificate validation, the application can return false if the errors parameter is not equal to SslPolicyErrors.None. If the application wishes not to be strict (for example, a valid certificate that has expired is acceptable), then it can examine the information in the certificate and chain parameters to determine what to do.</p>
+<p>If the certificate was issued by the NENA PSAP Credentialing Agency (PCA) then the application can examine the information in the Subject Alternate Name (SAN) of the certificate in order to determine what to do.</p>
+<p>The <a href="https://phrsite.github.io/Ng911LibDocumentation/api/Ng911CertUtils.CertUtils.html">CertUtils</a> class in the Ng911Lib class library contains a method called GetOtherNameParams() that can extract the following information from the client's X.509 certificate.</p>
+<ol>
+<li>ID Type (identifies the entity such as: Element, Service, Agent or Agency)</li>
+<li>ID of the entity</li>
+<li>Roles assigned to the entity</li>
+<li>Owner of the certificate assigned to the entity</li>
+</ol>
+<p>See <a href="https://phrsite.github.io/Ng911LibDocumentation/articles/Ng911Certificates.html">Ng9-1-1 X.509 Certificates</a>.</p>
+<h1 id="using-the-cadifwebsocketclient-class">Using the CadIfWebSocketClient Class</h1>
+<p>Applications can use the CadIfWebSocketClient class to receive EIDOs from an EIDO server (i.e., such as the Ng911CadIfServer class). This class performs the following functions.</p>
+<ol>
+<li>Manages the web socket connection to a single EIDO server</li>
+<li>Manages the subscription to receive EIDOs from the EIDO server when the web socket connection is established</li>
+<li>Receives EIDOs from the server and passes them to the application via an event.</li>
+</ol>
+<p>Perform the following steps to use this class.</p>
+<ol>
+<li>Create an instance of the CadIfWebSocketClient class. See the <a href="../api/Ng911CadIfLib.CadIfWebSocketClient.html#constructors">constructor</a> of the CadIfWebSocketClient class.</li>
+<li>Hook the events of this class</li>
+<li>Call the Start() method to initiate a connection to the EIDO server</li>
+</ol>
+<p>When the application shuts down, it should call the Shutdown() method of the CadIfWebSocketClient class. This method terminates the subscription to the EIDO server and gracefully closes the web socket connection.</p>
+<h2 id="cadifwebsocketclient-events">CadIfWebSocketClient Events</h2>
+<h3 id="eidoreceived-event">EidoReceived Event</h3>
+<p>The <a href="../api/Ng911CadIfLib.CadIfWebSocketClient.html#Ng911CadIfLib_CadIfWebSocketClient_EidoReceived">EidoReceived</a> event of the CadIfWebSocketClient class is fired when the CadIfWebSocketClient class receives a new EIDO from the EIDO server.</p>
+<p>The event handler delegate for this event takes an <a href="https://phrsite.github.io/EidoLibDocumentation/api/Eido.EidoType.html">EidoType</a> object and a string that specifies the URI of the EIDO server that the client is connected to.</p>
+<h3 id="cadifconnectionstate-event">CadIfConnectionState Event</h3>
+<p>The CadIfWebSocketClient class fires the <a href="../api/Ng911CadIfLib.CadIfWebSocketClient.html#Ng911CadIfLib_CadIfWebSocketClient_CadIfConnectionState">CadIfConnectionState</a> event when the web socket connection to the EIDO server changes state.</p>
+<p>The event handler delegate for this event takes a boolean value that indicates the current connection state (true means connected and false means not connected) and a string that specifies the URI of the EIDO server that the client is connected to.</p>
+<h3 id="cadifsubscriptionstate-event">CadIfSubscriptionState Event</h3>
+<p>The CadIfWebSocketClient class fires the <a href="../api/Ng911CadIfLib.CadIfWebSocketClient.html#Ng911CadIfLib_CadIfWebSocketClient_CadIfSubscriptionState">CadIfSubscriptionState</a> event when the state of the subscription to the EIDO server changes state.</p>
+<p>The event handler delegate for this event takes a boolean value that indicates the current subscription state (true means subscribed and false means not subscribed) and a string that specifies the URI of the EIDO server that the client is connected to.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/PhrSite/Ng911CadIfLib/blob/master/Documentation/articles/intro.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
